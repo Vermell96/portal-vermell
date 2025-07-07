@@ -16,14 +16,19 @@ export const AuthProvider = ({ children }) => {
     await api.post('/register', { username, email, password });
   };
 
-  const login = async (username, password) => {
-    const { data } = await api.post(
-      '/login',
-      new URLSearchParams({ username, password })
-    );
-    localStorage.setItem('token', data.access_token);
-    setUser({ token: data.access_token });
-  };
+const login = async (username, password) => {
+  try {
+    const res = await axios.post('/api/login', { username, password });
+    const token = res.data.access_token;
+    const userData = res.data.user;
+
+    localStorage.setItem('token', token);
+    setUser(userData);  // Esto es CLAVE para que <Private> te deje pasar
+  } catch (error) {
+    console.error("Error al iniciar sesión:", error);
+  }
+};
+
 
   const logout = () => {
     localStorage.removeItem('token');
