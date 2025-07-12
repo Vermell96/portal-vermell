@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import api from '../api/axios';
+import axios from 'axios';
 
 export const AuthContext = createContext();
 
@@ -18,16 +19,16 @@ export const AuthProvider = ({ children }) => {
 
 const login = async (username, password) => {
   try {
-    const res = await axios.post('/api/login', { username, password });
-    const token = res.data.access_token;
-    const userData = res.data.user;
+    const res = await api.post('/login', { username, password }); // usa la misma instancia
+    const { access_token: token, user: userData } = res.data;
 
     localStorage.setItem('token', token);
-    setUser(userData);  // Esto es CLAVE para que <Private> te deje pasar
+    setUser(userData);         // mantiene el mismo comportamiento que ya tenías
   } catch (error) {
-    console.error("Error al iniciar sesión:", error);
+    console.error('Error al iniciar sesión:', error);
   }
 };
+
 
 
   const logout = () => {

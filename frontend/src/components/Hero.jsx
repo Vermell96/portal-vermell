@@ -1,5 +1,6 @@
 import React from 'react'
 import Spline from "@splinetool/react-spline";
+import ThreeCube from './Threecube';
 import 'boxicons/css/boxicons.min.css';
 
 const Hero = () => {
@@ -8,7 +9,7 @@ const Hero = () => {
         <div className='max-w-xl ml-[5%] z-10 mt-[90%] md:mt-[60%] lg:mt-0'>
 
             {/* Tag-box introduccion */}
-            <div className='relative w-[95%] sm:w-48 h-10 bg-gradient-to-r from-[#656565] to-[#e99b63] shadow-[0_0_15px_rgba(255,255,255,0.4)] rounded-full'>
+            <div className='relative w-[95%] sm:w-48 h-10 bg-gradient-to-r from-[#656565] to-[#5300a0] shadow-[0_0_15px_rgba(255,255,255,0.4)] rounded-full'>
                 <div className='absolute inset-[3px] bg-black rounded-full flex items-center justify-center gap-1'>
                     <i class='bx bx-diamond'></i> Introducción
 
@@ -44,8 +45,10 @@ const Hero = () => {
         </div>
 
         {/* 3D */}
-        <Spline className='absolute lg:top-0 top-[-20%] bottom-0 lg:left-[25%] sm:left-[-2%] h-full' 
-        scene="https://prod.spline.design/gdaS3quFAmtUTHkC/scene.splinecode" />
+        <div className="w-full h-[400px] lg:h-[600px] lg:w-[480px] lg:ml-auto">
+        <ThreeCube />
+        </div>
+
 
 
     </main>
@@ -53,4 +56,3 @@ const Hero = () => {
 }
 
 export default Hero
-
